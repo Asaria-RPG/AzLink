@@ -1,10 +1,6 @@
-repositories {
-    maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
-}
-
 dependencies {
     implementation project(':azlink-common')
-    compileOnly 'org.spongepowered:spongeapi:8.0.0'
+    compileOnly files('libs/HytaleServer.jar')
 }
 
 processResources {
