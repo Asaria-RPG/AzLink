@@ -32,11 +32,9 @@ Java **25** JDK or newer is required.
 
 ### Compiling from source
 
-1. Download the [Hytale](https://hytale.com/) server and place it at `hytale/libs/HytaleServer.jar`.
-2. Build the project using Gradle:
-   ```sh
-   ./gradlew build
-   ```
+```sh
+./gradlew build
+```
 
 The output JAR files are located in `universal/build/libs` and `universal-legacy/build/libs`.
 

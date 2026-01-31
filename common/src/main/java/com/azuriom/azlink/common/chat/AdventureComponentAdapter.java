@@ -34,11 +34,7 @@ public final class AdventureComponentAdapter {
     }
 
     public static Component toAdventure(TextComponent component) {
-        Component result = Component.text(component.content());
-
-        if (component.color() != null) {
-            result = result.color(adaptColor(component.color()));
-        }
+        Component result = Component.text(component.content(), adaptColor(component.color()));
 
         for (TextDecoration decoration : component.decorations()) {
             result = result.decorate(DECORATION_MAP.get(decoration));
