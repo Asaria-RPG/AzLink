@@ -1,3 +1,5 @@
+apply plugin: 'maven-publish'
+
 repositories {
     maven { url = 'https://maven.hytale.com/release/' }
 }
@@ -10,5 +12,24 @@ dependencies {
 processResources {
     filesMatching('**/*.json') {
         expand 'pluginVersion': version
+    }
+}
+
+publishing {
+    repositories {
+        maven {
+            name = 'GitHubPackages'
+            url = uri('https://maven.pkg.github.com/Asaria-RPG/AzLink')
+            credentials {
+                username = project.findProperty('gpr.user') ?: System.getenv('GITHUB_ACTOR')
+                password = project.findProperty('gpr.key') ?: System.getenv('GITHUB_TOKEN')
+            }
+        }
+    }
+
+    publications {
+        gpr(MavenPublication) {
+            from components.java
+        }
     }
 }
