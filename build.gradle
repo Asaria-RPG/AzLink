@@ -5,6 +5,7 @@ allprojects {
 
 subprojects {
     apply plugin: 'java'
+    apply plugin: 'maven-publish'
 
     java {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -17,5 +18,24 @@ subprojects {
 
     repositories {
         mavenCentral()
+    }
+
+    publishing {
+        repositories {
+            maven {
+                name = 'GitHubPackages'
+                url = uri('https://maven.pkg.github.com/Asaria-RPG/AzLink')
+                credentials {
+                    username = project.findProperty('gpr.user') ?: System.getenv('GITHUB_ACTOR')
+                    password = project.findProperty('gpr.key') ?: System.getenv('GITHUB_TOKEN')
+                }
+            }
+        }
+
+        publications {
+            gpr(MavenPublication) {
+                from components.java
+            }
+        }
     }
 }
